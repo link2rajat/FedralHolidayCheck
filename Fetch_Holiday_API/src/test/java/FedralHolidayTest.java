@@ -10,9 +10,8 @@ public class FedralHolidayTest {
     @Test
     public void testCheckIfTodayIsHoliday() {
         try {
-
-            boolean isHoliday = FedralHolidayChecker.checkIfTodayIsHoliday(LocalDate.now().format(DateTimeFormatter.ISO_DATE));
-
+            String today = LocalDate.now().format(DateTimeFormatter.ISO_DATE);
+            boolean isHoliday = FedralHolidayChecker.checkIfTodayIsHoliday(today);
             assertFalse(isHoliday);
         } catch (IOException e) {
             fail("Exception occurred: " + e.getMessage());
@@ -22,8 +21,8 @@ public class FedralHolidayTest {
     @Test
     public void testCheckIfIndependenceDayIsHoliday() {
         try {
-            boolean isHoliday = FedralHolidayChecker.checkIfTodayIsHoliday(LocalDate.of(2024, 7, 4).format(DateTimeFormatter.ISO_DATE));
-
+            String testHoliday = LocalDate.of(2024, 7, 4).format(DateTimeFormatter.ISO_DATE);
+            boolean isHoliday = FedralHolidayChecker.checkIfTodayIsHoliday(testHoliday);
             assertTrue(isHoliday);
         } catch (IOException e) {
             fail("Exception occurred: " + e.getMessage());
