@@ -38,19 +38,19 @@ public class FedralHolidayChecker {
 
             Element table = doc.selectFirst("table");
             if (table != null) {
-
+                // Get all headers from the table
                 Elements header = table.select("th");
-                System.out.println(header.toString());
-                // Get all rows from the table
+
+                // Getfirst header from the table
                 String year = header.get(0).text();
-                //System.out.println("Year is : "+year);
+
                 Elements rows = table.select("tr");
 
                 // Skip the first row (header row)
                 for (int i = 1; i < rows.size(); i++) {
                     Element row = rows.get(i);
                     Elements columns = row.select("td");
-                    // System.out.println(columns.toString());
+
                     // Extract holiday name and date from columns
                     String holidayDate = columns.get(0).text();
                     SimpleDateFormat inputFormat = new SimpleDateFormat("MMMM d");
@@ -63,7 +63,6 @@ public class FedralHolidayChecker {
                         outputDate = outputDate.substring(0, 6) + year;
 
                         LocalDate localDate = LocalDate.parse(outputDate, DateTimeFormatter.ofPattern("MM/dd/yyyy"));
-                        //System.out.println(localDate.format(DateTimeFormatter.ISO_DATE));
                         holidayDates.add(localDate.format(DateTimeFormatter.ISO_DATE));
                     } catch (ParseException e) {
                         System.out.println("Error parsing the input date: " + e.getMessage());
